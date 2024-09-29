@@ -30,6 +30,11 @@ export function Link({
     }
 
     const targetUrl = new URL(path, window.location.toString());
+    if (targetUrl.host === 't.me') {
+      e.preventDefault();
+      return utils.openTelegramLink(targetUrl.toString());
+    }
+
     const currentUrl = new URL(window.location.toString());
     const isExternal = targetUrl.protocol !== currentUrl.protocol
       || targetUrl.host !== currentUrl.host;
